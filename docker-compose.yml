@@ -17,6 +17,6 @@ services:
         ports:
             - 5000:5000
         volumes:
-            - ~/win_data/app_data/synology_data:/storage
+            - ~/win_data/appdata/synology_data:/storage
         restart: on-failure
         stop_grace_period: 1m
