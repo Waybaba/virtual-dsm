@@ -15,7 +15,16 @@ services:
         cap_add:
             - NET_ADMIN        
         ports:
-            - 5000:5000
+            - 5000:5000 # DSM管理界面HTTP
+            - 5001:5001 # DSM管理界面HTTPS
+            - 6690:6690 # Drive服务
+            - 548:548   # AFP协议，用于Mac文件服务
+            - 137:137/udp # NetBIOS Name Service
+            - 138:138/udp # NetBIOS Datagram Service
+            - 139:139   # NetBIOS Session Service和Samba服务（SMB/CIFS）
+            - 445:445   # Microsoft-DS服务，用于Samba服务（SMB/CIFS）
+            - 5353:5353 # Bonjour服务
+            - 6281:6281 # Hyper Backup Vault服务
         volumes:
             - ~/win_data/appdata/synology_data:/storage
         restart: on-failure
