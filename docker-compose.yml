@@ -8,7 +8,7 @@ services:
             DISK_SIZE: "500G"
             RAM_SIZE: "4096M"
             ALLOCATE: "N"
-            DHCP: "Y"
+            DHCP: "Y" # get ip from router, then use router to make it static.
         devices:
             - /dev/kvm
             - /dev/vhost-net
@@ -22,7 +22,12 @@ services:
         stop_grace_period: 1m
         networks:
             bridge_macvlan:
-                ipv4_address: 192.168.31.139 # i dont know why this wont work, the actual backend ip is still from the router, which is set to 192.168.31.100 for easy access. I guess that only the ip from the DHCP of the router can be see in the router backend.
+                ipv4_address: 192.168.31.139 
+                # i dont know why this wont work. 
+                # the actual backend ip is still from the router, which is set to 192.168.31.100 for easy access. 
+                # I guess that only the ip from the DHCP of the router can be see in the router backend.
+                # so I I set 192.168.31.100 here, i can not manage it in the router, which is not good.
+                # so I use dynamic IP and use router to make it static
 
 networks:
   bridge_macvlan:
