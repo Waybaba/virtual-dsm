@@ -22,7 +22,7 @@ services:
         stop_grace_period: 1m
         networks:
             bridge_macvlan:
-                ipv4_address: 192.168.31.139
+                ipv4_address: 192.168.31.139 # i dont know why this wont work, the actual backend ip is still from the router, which is set to 192.168.31.100 for easy access. I guess that only the ip from the DHCP of the router can be see in the router backend.
 
 networks:
   bridge_macvlan:
@@ -33,4 +33,4 @@ networks:
       config:
         - subnet: 192.168.31.0/24
           gateway: 192.168.31.1
-          ip_range: 192.168.31.139/24
+          ip_range: 192.168.31.0/24
