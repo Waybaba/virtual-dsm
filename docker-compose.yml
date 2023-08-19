@@ -5,7 +5,7 @@ services:
         image: kroese/virtual-dsm:latest
         environment:
             CPU_CORES: "8"
-            DISK_SIZE: "500G"
+            DISK_SIZE: "1500G"
             RAM_SIZE: "4096M"
             ALLOCATE: "N"
             DHCP: "Y" # get ip from router, then use router to make it static.
@@ -30,10 +30,10 @@ services:
                 # so I use dynamic IP and use router to make it static
 
 networks:
-  bridge_macvlan:
+  bridge_macvlan: # the bridge is from the parent 
     driver: macvlan
     driver_opts:
-      parent: bridge_eno4
+      parent: bridge_eno4 # ! need to be set outside docker using cockpit
     ipam:
       config:
         - subnet: 192.168.31.0/24
